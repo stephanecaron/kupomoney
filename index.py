@@ -18,7 +18,10 @@ currentOrSoldPrice = getSpecificDayOpenPrice(stock,soldDate)
 splits = getStockSplitMultiplier(stock,purchaseDate,soldDate)
 dividends = getStockDividends(stock,purchaseDate,soldDate)
 stockAmount = float(stockAmount)
+
+buyPrice = buyPrice*splits
 initialValue = buyPrice * stockAmount
+
 print(f"You held {stockAmount} {stock} stocks on {purchaseDate} which were individually worth {round(buyPrice,2)}$.")
 print(f'your initial total value was {round(initialValue,2)}$.')
 
