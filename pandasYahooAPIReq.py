@@ -1,4 +1,4 @@
-from datetime import datetime
+""" from datetime import datetime
 
 def getSpecificDayOpenPrice(ticker,startDate, endDate):
 if type(startDate) == str:
@@ -9,4 +9,4 @@ if not data.iloc[0]['Open']:
 return data.iloc[0]['Open']
 
 
-## use this when you need to make heavy requests
+## use this when you need to make heavy requests """

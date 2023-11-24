@@ -40,4 +40,11 @@ def getStockDividends(ticker,startDate,endDate):
         if startDate <= date.date() <= endDate:
             totalDividends += dividend
     return float(totalDividends)
-            
+
+def validateStock(ticker):
+    ticker = yf.Ticker(ticker)
+    try:
+        ticker.info
+        return True
+    except:
+        return False
