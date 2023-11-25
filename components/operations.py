@@ -1,3 +1,7 @@
+import json
+from datetime import datetime
+from components import userInputs, yahooAPIrequests
+
 def addStockToDict(stockDict, ticker, purchaseDate, purchasePrice, purchaseQTY):
     if ticker in stockDict:
         stockDict[ticker].append({
@@ -12,25 +16,27 @@ def addStockToDict(stockDict, ticker, purchaseDate, purchasePrice, purchaseQTY):
             'purchaseQTY': purchaseQTY
         }]
 
+def updateJson(stockDict):
+    with open('stockDict.json', 'w') as f:
+        json.dump(stockDict, f, indent=4)
 
-##duno whats happening below here this bad boy just doing shit lmao
-def calculateTotalReturn(stockDict):
-    totalReturn = 0
-    for ticker in stockDict:
-        for purchase in stockDict[ticker]:
+def addStock(stockDict):
+    ticker = userInputs.askStockTicker()
+    purchaseDate = userInputs.askDate()
+    currentPrice = yahooAPIrequests.getSpecificDayOpenPrice(ticker, purchaseDate)
+    purchasePrice = userInputs.askNumber(f'Enter the price (Price at purchase date open: ({round(currentPrice,2)}$)): ')
+    purchaseQTY = userInputs.askNumber("Enter the quantity: ")
+
+    addStockToDict(stockDict, ticker, purchaseDate, purchasePrice, purchaseQTY)
+    updateJson(stockDict)
+    print(f'Added {ticker} to your portfolio.')
+
+def calculateAssetsValue(stockDict):
+    totalAssetsValue = 0
+    for ticker, purchases in stockDict.items():
+        for purchase in purchases:
             purchaseDate = purchase['purchaseDate']
-            purchasePrice = purchase['purchasePrice']
             purchaseQTY = purchase['purchaseQTY']
-            soldDate = date.today()
-            soldPrice = getSpecificDayOpenPrice(ticker, soldDate)
-            splits = getStockSplitMultiplier(ticker, purchaseDate, soldDate)
-            dividends = getStockDividends(ticker, purchaseDate, soldDate)
-            totalReturn += calculateTotalReturnForStock(purchaseDate, purchasePrice, purchaseQTY, soldDate, soldPrice, splits, dividends)
-    return totalReturn
-
-def calculateTotalReturnForStock(purchaseDate, purchasePrice, purchaseQTY, soldDate, soldPrice, splits, dividends):
-    initialValue = purchasePrice * purchaseQTY
-    endvalue = soldPrice * purchaseQTY * splits
-    totalDividends = dividends * purchaseQTY
-    totalValue = endvalue + totalDividends
-    return totalValue - initialValue
+            currentPrice = yahooAPIrequests.getSpecificDayOpenPrice(ticker, purchaseDate)
+            totalAssetsValue += currentPrice * purchaseQTY
+    return totalAssetsValue

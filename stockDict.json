@@ -1,0 +1,26 @@
+{
+    "MSFT": [
+        {
+            "purchaseDate": "1995-04-03",
+            "purchasePrice": 2.75,
+            "purchaseQTY": 21.0
+        },
+        {
+            "purchaseDate": "1996-03-02",
+            "purchasePrice": 3.72,
+            "purchaseQTY": 21.0
+        },
+        {
+            "purchaseDate": "1994-02-03",
+            "purchasePrice": 1.65,
+            "purchaseQTY": 34.0
+        }
+    ],
+    "AAPL": [
+        {
+            "purchaseDate": "1994-03-02",
+            "purchasePrice": 0.26,
+            "purchaseQTY": 15.0
+        }
+    ]
+}

@@ -1,12 +1,13 @@
 from datetime import datetime, date, timedelta
+from components import operations
 import yfinance as yf
 
-
-dateFormat = '%Y-%m-%d'
+def convertStringToDate(date):
+    return datetime.strptime(date, '%Y-%m-%d').date()
 
 def getSpecificDayOpenPrice(ticker,targetDate):
     if type(targetDate) == str:
-        targetDate = datetime.strptime(targetDate, dateFormat)
+        targetDate = convertStringToDate(targetDate)
     ticker = yf.Ticker(ticker)
     data = ticker.history(start=targetDate, end=targetDate + timedelta(days=3)) #theres no specific date API request, if start = end, you get nothing
     if not data.iloc[0]['Open']:
@@ -17,8 +18,8 @@ def getStockSplitMultiplier(ticker,startDate,endDate):
     if endDate is None:
         endDate = datetime.today().date()
     else:
-        endDate = datetime.strptime(endDate, dateFormat).date()
-    startDate = datetime.strptime(startDate, dateFormat).date()
+        endDate = convertStringToDate(endDate)
+    startDate = convertStringToDate(startDate)
     ticker = yf.Ticker(ticker)
     splits = ticker.splits
     totalSplits = 0
@@ -31,8 +32,8 @@ def getStockDividends(ticker,startDate,endDate):
     if endDate is None:
         endDate = datetime.today().date()
     elif type(endDate) == str:
-        endDate = datetime.strptime(endDate, dateFormat).date()
-    startDate = datetime.strptime(startDate, dateFormat).date()
+        endDate = convertStringToDate(endDate)
+    startDate = convertStringToDate(startDate)
     ticker = yf.Ticker(ticker)
     dividends = ticker.dividends
     totalDividends = 0

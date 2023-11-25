@@ -1,22 +1,23 @@
-from yahooAPIrequests import getSpecificDayOpenPrice, getStockDividends, getStockSplitMultiplier, validateStock
 from components import userInputs, operations
 from datetime import date
+import json
 
 ## user enters 1 stock purchase, price and buy date
 ## Algorithm calculates total return, dividends, splits, etc.
-stockDict = {}
+stockDict = json.load(open('stockDict.json'))
+print('---------------KUPOMONEY---------------')
+print(f' hey big boy you\'re currently worth {round(operations.calculateAssetsValue(stockDict),2)}$')
 
-print('------------------KUPOMONEY------------------')
-def addStock():
-    ticker = userInputs.askStockTicker()
-    purchaseDate = userInputs.askDate()
-    purchasePrice = userInputs.askNumber("Enter the price: ")
-    purchaseQTY = userInputs.askNumber("Enter the quantity: ")
+while True:
+    print('------------------MENU------------------')
+    print('1. Add Stock')
+    print('2. Calculate Total Return')
+    print('3. Exit')
+    choice = userInputs.askNumber('Enter your choice: ')
 
-    operations.addStockToDict(stockDict, ticker, purchaseDate, purchasePrice, purchaseQTY)
-
-
-addStock()
-print(stockDict)
-addStock()
-print(stockDict)
+    if choice == 1:
+        operations.addStock(stockDict)
+    elif choice == 2:
+        print('Not implemented yet')
+    elif choice == 3:
+        break
