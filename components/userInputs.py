@@ -1,6 +1,7 @@
 from datetime import datetime, date, timedelta
 from components import operations, yahooAPIrequests
 
+
 def askStockTicker():
     while True:
         ticker = input("Enter the stock ticker: ")
@@ -8,7 +9,8 @@ def askStockTicker():
             print("You have entered an invalid ticker!")
         else:
             return ticker
-        
+
+
 def askDate():
     try:
         date = input("Enter the date (YYYY-mm-dd): ")
@@ -16,6 +18,7 @@ def askDate():
     except:
         print("You have entered an invalid date!")
         return askDate()
+
 
 def askNumber(string):
     while True:
@@ -27,6 +30,7 @@ def askNumber(string):
         except KeyboardInterrupt:
             print("\nYou have cancelled the input!")
             break
+
 
 def askCurrency(string):
     while True:
