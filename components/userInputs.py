@@ -27,3 +27,14 @@ def askNumber(string):
         except KeyboardInterrupt:
             print("\nYou have cancelled the input!")
             break
+
+def askCurrency(string):
+    while True:
+        try:
+            currency = input(string)
+            return currency
+        except ValueError:
+            print("You have entered an invalid Value!")
+        except KeyboardInterrupt:
+            print("\nYou have cancelled the input!")
+            break

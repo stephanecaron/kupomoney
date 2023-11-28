@@ -12,7 +12,7 @@ def getSpecificDayOpenPrice(ticker,targetDate):
     data = ticker.history(start=targetDate, end=targetDate + timedelta(days=3)) #theres no specific date API request, if start = end, you get nothing
     if not data.iloc[0]['Open']:
         return 0
-    return float(data.iloc[0]['Open'])
+    return [float(data.iloc[0]['Open']),(ticker.info['currency'])]
 
 def getStockSplitMultiplier(ticker,startDate,endDate):
     if endDate is None:
