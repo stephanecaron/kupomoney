@@ -4,13 +4,13 @@
       "purchaseDate": "2020-01-01",
       "purchasePrice": 78.3069,
       "currency": "CAD",
-      "purchaseQTY": 2443.0
+      "purchaseQTY": 443.0
     },
     {
       "purchaseDate": "2020-01-01",
       "purchasePrice": 84.9747,
       "currency": "CAD",
-      "purchaseQTY": 1225.0
+      "purchaseQTY": 225.0
     },
     {
       "purchaseDate": "2020-01-01",
@@ -24,7 +24,7 @@
       "purchaseDate": "2020-01-01",
       "purchasePrice": 26.2225,
       "currency": "CAD",
-      "purchaseQTY": 5291.0
+      "purchaseQTY": 1291.0
     }
   ],
   "AAPL": [
@@ -32,7 +32,7 @@
       "purchaseDate": "2020-01-01",
       "purchasePrice": 41.2525,
       "currency": "USD",
-      "purchaseQTY": 136.0
+      "purchaseQTY": 36.0
     }
   ],
   "VCN.TO": [
@@ -40,7 +40,7 @@
       "purchaseDate": "2020-01-01",
       "purchasePrice": 33.0623,
       "currency": "CAD",
-      "purchaseQTY": 1539.0
+      "purchaseQTY": 539.0
     }
   ],
   "AMD": [

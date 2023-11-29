@@ -62,19 +62,6 @@ def addStock(stockDict):
     print(f"Added {ticker} to your portfolio.")
 
 
-def calculateInitialAssetsValue(stockDict):
-    totalAssetsValue = 0
-    for ticker, purchases in stockDict.items():
-        for purchase in purchases:
-            purchaseDate = purchase["purchaseDate"]
-            purchaseQTY = purchase["purchaseQTY"]
-            currentPrice = yahooAPIrequests.getSpecificDayOpenPrice(
-                ticker, purchaseDate
-            )[0]
-            totalAssetsValue += currentPrice * purchaseQTY
-    return totalAssetsValue
-
-
 def getCurrencyConversionForTargetDate(currentCurrency, targetCurrency, targetDate):
     if currentCurrency == targetCurrency:
         return 1
@@ -103,7 +90,7 @@ def calculateCurrentAssetsValue(stockDict, userCurrency):
         stockValue = currentStockPrice * stockQTYReserve
         print("------")
         print(
-            f"{bcolors.HEADER}{ticker}{bcolors.ENDC} :\n{stockQTY} units at {round(currentStockPrice,2)}$ {userCurrency}\n{bcolors.OKCYAN}{round(stockValue,2)}$ total stock value{bcolors.ENDC}"
+            f"{bcolors.HEADER}{ticker}{bcolors.ENDC} :\n{stockQTYReserve} units at {round(currentStockPrice,2)}$ {userCurrency}\n{bcolors.OKCYAN}{round(stockValue,2)}$ total stock value{bcolors.ENDC}"
         )
         totalValue += stockValue
     print("-----")
