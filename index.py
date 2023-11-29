@@ -2,11 +2,11 @@ from components import userInputs, operations
 from datetime import date
 import json
 
-userSettings = json.load(open("userSettings.json"))
-userCurrency = userSettings["currency"]
-stockDict = json.load(open("stockDict.json"))
 
 while True:
+    stockDict = json.load(open("stockDict.json"))
+    userSettings = json.load(open("userSettings.json"))
+    userCurrency = userSettings["currency"]
     print("------------------MENU------------------")
     print("1. Add Stock")
     print("2. Calculate Stock Growth Return")
@@ -18,7 +18,6 @@ while True:
 
     if choice == 1:
         operations.addStock(stockDict)
-        stockDict = json.load(open("stockDict.json"))
     elif choice == 2:
         print("Not implemented yet")
     elif choice == 3:
