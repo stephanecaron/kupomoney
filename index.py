@@ -2,8 +2,9 @@ from components import userInputs, operations
 from datetime import date
 import json
 
+run = True
 
-while True:
+while run == True:
     stockDict = json.load(open("stockDict.json"))
     userSettings = json.load(open("userSettings.json"))
     userCurrency = userSettings["currency"]
@@ -27,4 +28,4 @@ while True:
         userSettings = json.load(open("userSettings.json"))
         currency = userSettings["currency"]
     elif choice == 5:
-        break
+        run = False
