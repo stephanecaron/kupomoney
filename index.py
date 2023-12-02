@@ -4,6 +4,13 @@ import json
 
 run = True
 
+try:
+    stockDict = json.load(open("stockDict.json"))
+except:
+    blank_data = {}
+    with open("stockDict.json", 'w') as json_file:
+        json.dump(blank_data, json_file)
+
 while run == True:
     stockDict = json.load(open("stockDict.json"))
     userSettings = json.load(open("userSettings.json"))
